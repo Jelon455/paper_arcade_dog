@@ -1,5 +1,4 @@
 //DEFINE FOR MOTORS
-//Double check please!
 int dogTailPin1 = 4;
 int dogTailPin2 = 5;
 
@@ -28,12 +27,12 @@ int LEDPin = 7;
 
 void setup() 
 {
-  //PINS FOR DISTANCE SENROS
-  pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
-  pinMode(echoPin, INPUT); // Sets the echoPin as an Input
-  Serial.begin(9600); // Starts the serial communication
+//PINS FOR DISTANCE SENROS
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  Serial.begin(9600);
 
-  //PINS FOR MOTORS
+//PINS FOR MOTORS
   pinMode(dogTailPin1, OUTPUT);
   pinMode(dogTailPin2, OUTPUT);
   pinMode(dogEarsPin1, OUTPUT);
@@ -42,10 +41,10 @@ void setup()
   pinMode(speedEars, OUTPUT); 
   pinMode(speedTail, OUTPUT);
 
-  //PINS FOR BUTTON
+//PINS FOR BUTTON
   pinMode(buttonPin, INPUT);
 
-  //PINS FOR LED
+//PINS FOR LED
   pinMode(LEDPin, OUTPUT);
 }
 
@@ -94,7 +93,6 @@ void earsAndTailMovement(int swing)
   //Tail rotate in one direction
     digitalWrite(dogTailPin1, HIGH);
     digitalWrite(dogTailPin2, LOW);
-  //***TO DO***
     delay(1000);
   //Tail rotate in diffrent direction
     digitalWrite(dogTailPin1, LOW);
@@ -102,7 +100,6 @@ void earsAndTailMovement(int swing)
   //Ears rotate in diffrent direction
     digitalWrite(dogEarsPin1, LOW);
     digitalWrite(dogEarsPin2, HIGH);    
-  //***TO DO***
     delay(1000);
   }
   Serial.println("End of ears and tail's movement");
@@ -119,17 +116,16 @@ void earsMovement(int swing)
   //Ears rotate in one direction    
     digitalWrite(dogEarsPin1, HIGH);
     digitalWrite(dogEarsPin2, LOW);
-  //***TO DO***
-    delay(1500);
+    delay(1000);
   //Ears rotate in diffrent direction
     digitalWrite(dogEarsPin1, LOW);
     digitalWrite(dogEarsPin2, HIGH);    
-  //***TO DO***
-    delay(1500);
+    delay(1000);
   }
   Serial.println("End of ears's movement");
   stopMovement();
 }
+
 //MAIN CODE
 void loop() 
 {
@@ -137,37 +133,45 @@ void loop()
 
   buttonState = digitalRead(buttonPin);
 //Delay for bouncing button
-  delay(300);
-//Checking if there was an edge on button
+  delay(200);
+
+//Checking if button pressed 0 - pressed 1 - no pressed
   if (buttonState != HIGH)
   {
-      digitalWrite(LEDPin, HIGH);
-      Serial.println("Button is pressed, start the program!");
-      Serial.println("Waiting for the ball...");
-    //Time to press the button and take ball to the sensor
-      delay(3500);
-      distanceMeasurement();
-      digitalWrite(LEDPin, LOW);
-    //FIRST CASE - ball is close to the dog so the tail is rotating ears are not
-      if (distance >= 5 && distance <= 50)
-      {
-        earsMovement(4);
-      }
-    //SECOND CASE - ball is very close to the dog so the tail is rotating ears are rotating
-      //***TO DO***
-      else if (distance >= 0 && distance < 5)
-      {
-        Serial.println("Measure distance is the closest one!");
-        earsAndTailMovement(3);
-      }
-    //THIRD CASE no ball so ears and tail are not moving
-      else
-      {
-        stopMovement();
-      }
+  //LED indicate that measuring is on
+    digitalWrite(LEDPin, HIGH);
+    Serial.println("Button is pressed, start the program!");
+    Serial.println("Waiting for the ball...");
+  //Time to press the button and take ball to the sensor
+    delay(3500);
+    distanceMeasurement();
+    digitalWrite(LEDPin, LOW);
+
+  //FIRST CASE - ball is close to the dog so the tail is rotating ears are not
+    if (distance >= 7 && distance <= 40)
+    {
+      Serial.println("Measure distance is okey but give me taht ball CLOSER!");
+      earsMovement(3);
     }
+  //SECOND CASE - ball is very close to the dog so the tail is rotating ears are rotating
+    else if (distance >= 0 && distance < 7)
+    {
+      Serial.println("Measure distance is the closest one!");
+      earsAndTailMovement(3);
+    }
+  //THIRD CASE no ball/ball to far so ears and tail are not moving
+    else if (distance > 40)
+    {
+      stopMovement();
+    }
+  //IDLE CASE do nothing
     else
     {
       delay(10);
     }
+  }
+  else
+  {
+    delay(10);
+  }
 }
