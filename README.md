@@ -24,11 +24,12 @@ This project is designed to be beginner-friendly for learning Arduino and electr
 - **Distance Sensing**: The ultrasonic sensor measures the distance to the ball.
 - **Ear Movement**: When the ball is detected within a certain distance, the motors controlling the ears will start to move.
 - **Tail Rotation**: If the ball gets even closer, the tail motor will start rotating.
-- **Push Button Control**: Checking where is the ball is triggered by the push button.
+- **Push Button Control**: Turning on and off the dog.
 
 ## How to Use
-- **Start Game**: Pushe the button and see if LED diode is on!
+- **Start Game**: Push the button and see if LED diode is on!
 - **Play**: Place the ball near the dog to watch its ears and tail react based on the proximity of the ball!
+-  **Clean after play**: Push the button to tur in off.
 
 ## Future Improvements
 
