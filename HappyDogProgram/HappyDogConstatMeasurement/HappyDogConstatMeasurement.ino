@@ -123,14 +123,14 @@ void checkDistanceAndReact()
   distanceMeasurement();
 
 //FIRST CASE - ball is close to the dog, only ears move
-  if (distance >= 9 && distance <= 30)
+  if (distance >= 12 && distance <= 30)
   {
     earsMovement(1);
   }
 //SECOND CASE - ball is very close to the dog, ears and tail move
-  else if (distance >= 0 && distance < 9)
+  else if (distance >= 0 && distance < 12)
   {
-    earsAndTailMovement(2);
+    earsAndTailMovement(1);
   }
 //THIRD CASE - ball is too far, stop movement
   else if (distance > 40)
