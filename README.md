@@ -31,8 +31,13 @@ This project is designed to be beginner-friendly for learning Arduino and electr
 - **Play**: Place the ball near the dog to watch its ears and tail react based on the proximity of the ball!
 -  **Clean after play**: Push the button to tur in off.
 
+![461533608_451164041282819_2371417427040630571_n](https://github.com/user-attachments/assets/894021b8-cfb4-4205-b554-0fa999addbf0)
+
+[UNO+ROBODOG.pdf](https://github.com/user-attachments/files/17203667/UNO%2BROBODOG.pdf)
+
 ## Future Improvements
 
 - Add sound effects when the ball is detected.
 - Improve the responsiveness of the motors to make the movement more natural.
 - Enhance the project by introducing additional sensors (e.g., color sensor).
+  
